@@ -1,0 +1,26 @@
+{
+  "name": "cryptokitties-cli",
+  "version": "0.0.1",
+  "description": "cryptokitties-cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jacob Rosenthal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jacobrosenthal/node-cryptokitties-cli.git"
+  },
+  "keywords": [
+    "cryptokitties",
+    "kitties"
+  ],
+  "bin": {
+    "cryptokitties": "index.js"
+  },
+  "dependencies": {
+    "cryptokitties-contrib": "git@github.com:jacobrosenthal/cryptokitties.git#order",
+    "yargs": "git@github.com:zenflow/yargs.git#async_command_handlers"
+  }
+}
