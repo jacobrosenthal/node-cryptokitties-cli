@@ -10,6 +10,9 @@ var argv = require('yargs')
   .option('order', {
     default: 'asc'
   })
+  .option('search', {
+    default: ''
+  })
   .option('pretty', {
     alias: 'p',
     default: false
@@ -33,7 +36,7 @@ var prettyPrice = function(obj, index, array){
   return obj;
 };
 
-ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.order)
+ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.order, search=argv.search)
 .then(function(arrayOfAuctions) {
 
   var pretty = arrayOfAuctions.map(prettyPrice);
