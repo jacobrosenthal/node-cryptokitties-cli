@@ -17,6 +17,11 @@ var argv = require('yargs')
     alias: 'p',
     default: false
   })
+  .option('sort', {
+    alias: 's',
+    choices: ('s', ["youngest", "oldest", "cheapest", "expensive", "likes"]),
+    default: ''
+  })
   .argv
 
 var toFloat = function(val){
@@ -35,6 +40,10 @@ var prettyPrice = function(obj, index, array){
   }
   return obj;
 };
+
+if(argv.sort){
+  console.log(argv.s);
+}
 
 ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.order, search=argv.search)
 .then(function(arrayOfAuctions) {
