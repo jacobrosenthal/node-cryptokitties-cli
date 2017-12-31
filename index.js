@@ -39,7 +39,9 @@ var prettyPrice = function(obj, index, array){
 ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.order, search=argv.search)
 .then(function(arrayOfAuctions) {
 
-  var pretty = arrayOfAuctions.map(prettyPrice);
-  console.log(JSON.stringify(pretty, null, 2))
+  if(argv.pretty){
+    arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
+  }
+  console.log(JSON.stringify(arrayOfAuctions, null, 2))
 })
 
