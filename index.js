@@ -17,6 +17,14 @@ var argv = require('yargs')
     alias: 'p',
     default: false
   })
+  .option('orderBy', {
+    default: 'current_price'
+  })
+  .option('sort', {
+    alias: 's',
+    choices: ('s', ["youngest", "oldest", "cheapest", "expensive", "likes"]),
+    default: ''
+  })
   .argv
 
 var toFloat = function(val){
@@ -36,12 +44,16 @@ var prettyPrice = function(obj, index, array){
   return obj;
 };
 
-ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.order, search=argv.search)
-.then(function(arrayOfAuctions) {
+if(argv.sort){
+  console.log(argv.s);
+}
 
-  if(argv.pretty){
-    arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
-  }
-  console.log(JSON.stringify(arrayOfAuctions, null, 2))
-})
+// ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.order, search=argv.search)
+// .then(function(arrayOfAuctions) {
+
+//   if(argv.pretty){
+//     arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
+//   }
+//   console.log(JSON.stringify(arrayOfAuctions, null, 2))
+// })
 
