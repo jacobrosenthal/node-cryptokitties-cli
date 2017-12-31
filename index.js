@@ -48,12 +48,12 @@ if(argv.sort){
   console.log(argv.s);
 }
 
-// ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.order, search=argv.search)
-// .then(function(arrayOfAuctions) {
+ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.order, search=argv.search)
+.then(function(arrayOfAuctions) {
 
-//   if(argv.pretty){
-//     arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
-//   }
-//   console.log(JSON.stringify(arrayOfAuctions, null, 2))
-// })
+  if(argv.pretty){
+    arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
+  }
+  console.log(JSON.stringify(arrayOfAuctions, null, 2))
+})
 
