@@ -17,9 +17,6 @@ var argv = require('yargs')
     alias: 'p',
     default: false
   })
-  .option('orderBy', {
-    default: 'current_price'
-  })
   .option('sort', {
     alias: 's',
     choices: ('s', ["youngest", "oldest", "cheapest", "expensive", "likes"]),
@@ -48,7 +45,7 @@ if(argv.sort){
   console.log(argv.s);
 }
 
-ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.order, search=argv.search)
+ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.order, search=argv.search)
 .then(function(arrayOfAuctions) {
 
   if(argv.pretty){
