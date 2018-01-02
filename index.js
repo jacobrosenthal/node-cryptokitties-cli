@@ -6,7 +6,9 @@ var argv = require('yargs')
   .option('limit', {
     default: 20
   })
-  .option('order', {
+  .option('orderDirection', {
+    describe: 'Choose a direction',
+    choices: (["desc", "asc"]),
     default: 'asc'
   })
   .option('search', {
