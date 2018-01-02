@@ -6,6 +6,11 @@ var argv = require('yargs')
   .option('limit', {
     default: 20
   })
+  .option('orderBy', {
+    describe: 'Choose an option',
+    choices: (["purr_count", "current_price", "age"]),
+    default: 'current_price'
+  })
   .option('orderDirection', {
     describe: 'Choose a direction',
     choices: (["desc", "asc"]),

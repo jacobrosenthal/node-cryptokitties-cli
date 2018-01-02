@@ -2,7 +2,10 @@ var cryptokittiesContrib = require("cryptokitties-contrib");
 var ck = new cryptokittiesContrib();
 
 var apiCall = function (argv){
-  ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy="current_price", orderDirection=argv.orderDirection, search=argv.search)
+  if(argv.orderBy === 'age'){
+    argv.orderBy = "";
+  }
+  ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.orderDirection, search=argv.search)
   .then(function(arrayOfAuctions) {
     if(argv.pretty){
       arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
