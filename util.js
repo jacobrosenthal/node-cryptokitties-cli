@@ -5,13 +5,44 @@ var apiCall = function (argv){
   if(argv.orderBy === 'age'){
     argv.orderBy = "";
   }
-  ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.orderDirection, search=argv.search)
+
+  ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.orderDirection, search=argv.keywords)
   .then(function(arrayOfAuctions) {
     if(argv.pretty){
       arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
     }
     console.log(JSON.stringify(arrayOfAuctions, null, 2))
   })
+}
+
+var fixArgs = function(argv){
+
+  switch(argv.sort){
+    case 'youngest':
+      argv.orderDirection = "desc";
+      argv.orderBy = "";
+      break;
+    case 'oldest':
+      argv.orderDirection = "asc";
+      argv.orderBy = "";
+      break;
+    case 'cheapest':
+      argv.orderDirection = "asc";
+      argv.orderBy = "current_price";
+      break;
+    case 'expensive':
+      argv.orderDirection = "desc";
+      argv.orderBy = "current_price";
+      break;
+    case 'likes':
+      argv.orderDirection = "desc";
+      argv.orderBy = "purr_count";
+      break;
+    default:
+      throw new Error("Bad sort option - landed in swtich default")
+  }
+  console.log(argv)
+  return argv
 }
 
 var toFloat = function(val){
@@ -34,5 +65,6 @@ var prettyPrice = function(obj, index, array){
 module.exports = {
   prettyPrice,
   toFloat,
+  fixArgs,
   apiCall
 }
