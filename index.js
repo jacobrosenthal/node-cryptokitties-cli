@@ -10,11 +10,9 @@ var argv = require('yargs')
       choices: (["youngest", "oldest", "cheapest", "expensive", "likes"]),
       default: 'youngest'
     })
-  }, (yargs)=>{
-    //todo i dont love this, isnt there a way to get yargs to generate this?
-    yargs=util.fixArgs(yargs)
-    util.apiCall(yargs);
-  })
+    //coerce sadly scopes you to one variable so hack here to alter two
+    yargs.argv = util.coerceSort(yargs.argv)
+  }, util.apiCall)
   .command('api', 'low level api access', (yargs) => {
     yargs.positional('orderBy', {
       describe: 'Choose an option',
@@ -26,6 +24,8 @@ var argv = require('yargs')
       choices: (["desc", "asc"]),
       default: 'asc'
     })
+    //coerce doesnt let you coerce to a non existing choice, so hack here
+    yargs.argv = util.coerceOrderBy(yargs.argv)
   }, util.apiCall)
   .option('limit', {
     default: 20
