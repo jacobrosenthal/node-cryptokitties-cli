@@ -22,5 +22,10 @@
   "dependencies": {
     "cryptokitties-contrib": "git@github.com:jacobrosenthal/cryptokitties.git#order",
     "yargs": "^10.2.0"
+  },
+  "optionalDependencies": {
+    "csv-parser": "^1.12.0",
+    "level": "^2.1.1",
+    "moment-timezone": "^0.5.14"
   }
 }
