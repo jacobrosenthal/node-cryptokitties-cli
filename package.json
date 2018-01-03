@@ -21,6 +21,6 @@
   },
   "dependencies": {
     "cryptokitties-contrib": "git@github.com:jacobrosenthal/cryptokitties.git#order",
-    "yargs": "git@github.com:zenflow/yargs.git#async_command_handlers"
+    "yargs": "^10.2.0"
   }
 }

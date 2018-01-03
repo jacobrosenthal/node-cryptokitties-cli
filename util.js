@@ -2,10 +2,6 @@ var cryptokittiesContrib = require("cryptokitties-contrib");
 var ck = new cryptokittiesContrib();
 
 var apiCall = function (argv){
-  if(argv.orderBy === 'age'){
-    argv.orderBy = "";
-  }
-
   ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.orderDirection, search=argv.keywords)
   .then(function(arrayOfAuctions) {
     if(argv.pretty){
@@ -15,8 +11,7 @@ var apiCall = function (argv){
   })
 }
 
-var fixArgs = function(argv){
-
+var coerceSort = function(argv){
   switch(argv.sort){
     case 'youngest':
       argv.orderDirection = "desc";
@@ -45,6 +40,12 @@ var fixArgs = function(argv){
   return argv
 }
 
+var coerceOrderBy = function(argv){
+  if(argv.orderBy === 'age'){
+    argv.orderBy = "";
+  }
+}
+
 var toFloat = function(val){
   return val / 1000000000000000000;
 }
@@ -65,6 +66,7 @@ var prettyPrice = function(obj, index, array){
 module.exports = {
   prettyPrice,
   toFloat,
-  fixArgs,
+  coerceOrderBy,
+  coerceSort,
   apiCall
 }
