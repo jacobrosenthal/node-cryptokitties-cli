@@ -36,7 +36,6 @@ var coerceSort = function(argv){
     default:
       throw new Error("Bad sort option - landed in swtich default")
   }
-  console.log(argv)
   return argv
 }
 
