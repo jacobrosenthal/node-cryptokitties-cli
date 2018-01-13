@@ -20,7 +20,7 @@
     "cryptokitties": "index.js"
   },
   "dependencies": {
-    "cryptokitties-contrib": "git@github.com:jacobrosenthal/cryptokitties.git#order",
-    "yargs": "git@github.com:zenflow/yargs.git#async_command_handlers"
+    "cryptokitties-contrib": "^0.2.0",
+    "yargs": "^10.1.1"
   }
 }
