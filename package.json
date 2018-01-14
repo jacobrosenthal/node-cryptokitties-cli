@@ -20,7 +20,7 @@
     "cryptokitties": "index.js"
   },
   "engines": {
-    "node": ">=6.x.x"
+    "node": ">=7.6.x"
   },
   "engineStrict": true,
   "dependencies": {

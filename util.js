@@ -1,14 +1,20 @@
 var cryptokittiesContrib = require("cryptokitties-contrib");
 var ck = new cryptokittiesContrib();
-
-var apiCall = function (argv){
-  ck.listAuctions(type = "sale", status="open", limit=argv.limit, offset=0, orderBy=argv.orderBy, orderDirection=argv.orderDirection, search=argv.keywords)
-  .then(function(arrayOfAuctions) {
-    if(argv.pretty){
-      arrayOfAuctions = arrayOfAuctions.map(prettyPrice);
-    }
-    console.log(JSON.stringify(arrayOfAuctions, null, 2))
-  })
+const MAX = 20
+var apiCall = async function (argv){
+  var results =[];
+  for(var i = 0; i<= Math.floor(argv.limit/MAX); i++) {
+    var offset = i*MAX
+    var limit = (offset+MAX>argv.limit) ? (argv.limit % MAX) : MAX
+    var set = await ck.listAuctions(type = "sale", status="open", limit=limit, offset=offset, orderBy=argv.orderBy, orderDirection=argv.orderDirection, search=argv.keywords)
+    results = results.concat(set)
+    var delay = await new Promise((resolve) => setTimeout(resolve, 2500))
+  }
+  if(argv.pretty){
+   results = results.map(prettyPrice);
+  }
+  console.log(JSON.stringify(results, null, 2))
+  return results
 }
 
 var coerceSort = function(argv){
